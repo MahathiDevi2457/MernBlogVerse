@@ -94,8 +94,6 @@ const Home = () => {
                 ))
 
                 }</div>
-
-
         </div>
     )
 }

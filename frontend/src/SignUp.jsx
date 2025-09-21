@@ -88,11 +88,11 @@ const SignUp = () => {
     return (
         <div className="flex flex-col items-center gap-5 ">
             <NavBar />
-            <h1 className="text-blue-600 text-4xl font-bold">Join BlogVerse</h1>
-            <p className="text-gray-600 text-center font-semibold">Create your account and <br></br>start your Blogging journey today</p>
-            <form onSubmit={handleSubmit} className="flex flex-col border-gray-200 border-1 w-1/4 py-10 items-center gap-5 rounded-2xl shadow-2xl">
+            <h1 className="text-blue-600 text-xl md:text-4xl font-bold">Join BlogVerse</h1>
+            <p className="text-gray-600 text-sm md:text-xl text-center font-semibold">Create your account and <br></br>start your Blogging journey today</p>
+            <form onSubmit={handleSubmit} className="flex flex-col border-gray-200 border-1 w-[70%] md:w-1.5/3 py-10 items-center gap-2.5 md:gap-5 rounded-2xl shadow-2xl">
                 <div className="flex flex-col gap-2 w-[90%]">
-                    <p className="font-semibold text-md text-gray-700" >Full Name</p>
+                    <p className="font-semibold text-sm md:text-md text-gray-700" >Full Name</p>
                     <div className="relative">
                         <input
                             onChange={handleChange}
@@ -100,13 +100,13 @@ const SignUp = () => {
                             name="fullName"
                             value={formData.fullName}
                             placeholder="Enter your Full Name"
-                            className="border-1 border-gray-400 w-full py-2 pl-9 rounded-xl focus:outline-none focus:border-purple-500 focus:border-2" />
-                        <UserRound className="absolute top-3 left-3 w-4 h-4 text-gray-500" />
+                            className="border-1 border-gray-400 text-xs md:text-lg w-full py-2 pl-8 rounded-xl focus:outline-none focus:border-purple-500 focus:border-2" />
+                        <UserRound className="absolute top-2.5 left-3  md:top-3 md:left-3 w-3.5 h-3.5 md:w-4 md:h-4 text-gray-500" />
                         {errors.fullName && <p className="text-red-500">{errors.fullName}</p>}
                     </div>
                 </div>
                 <div className="flex flex-col gap-2 w-[90%]">
-                    <p className="font-semibold text-md text-gray-700" >Email ID</p>
+                    <p className="font-semibold text-sm md:text-md text-gray-700" >Email ID</p>
                     <div className="relative">
                         <input
                             onChange={handleChange}
@@ -114,13 +114,13 @@ const SignUp = () => {
                             placeholder="Enter your Email ID"
                             name="email"
                             value={formData.email}
-                            className="border-1 border-gray-400 w-full py-2 pl-9 rounded-xl focus:outline-none focus:border-purple-500 focus:border-2" />
-                        {!errors.email && <p className="text-red-500">{errors.email}</p>}
-                        <Mail className="absolute top-3 left-3 w-4 h-4 text-gray-500" />
+                            className="border-1 border-gray-400 text-xs md:text-lg w-full py-2 pl-8 rounded-xl focus:outline-none focus:border-purple-500 focus:border-2" />
+                        <Mail className="absolute top-2.5 left-3 md:top-3.5 md:left-3 w-3.5 h-3.5 md:w-4 md:h-4 text-gray-500" />
+                        {errors.email && <p className="text-red-500">{errors.email}</p>}
                     </div>
                 </div>
                 <div className="flex flex-col gap-2 w-[90%] ">
-                    <p className="font-semibold text-md text-gray-700" >Password</p>
+                    <p className="font-semibold text-sm md:text-md text-gray-700" >Password</p>
                     <div className="relative">
                         <input
                             onChange={handleChange}
@@ -128,16 +128,16 @@ const SignUp = () => {
                             placeholder="Enter password"
                             name="password"
                             value={formData.password}
-                            className="border-1 border-gray-500 w-full py-2 pl-9 rounded-xl focus:outline-none focus:border-purple-500 focus:border-2" />
+                            className="border-1 border-gray-500 text-xs md:text-lg w-full py-2 pl-8 rounded-xl focus:outline-none focus:border-purple-500 focus:border-2" />
 
-                        <LockKeyhole className="absolute top-3 left-3 w-4 h-4 text-gray-500" />
-                        <p onClick={handlePassword}>{showPassword ? <Eye className="absolute right-3 top-2.5 text-gray-400" /> : <EyeOff className="absolute right-3 top-2.5 text-gray-500" />} </p>
+                        <LockKeyhole className="absolute top-2.5 left-3  md:top-3.5 md:left-3 w-3.5 h-3.5 md:w-4 md:h-4 text-gray-500" />
+                        <p onClick={handlePassword}>{showPassword ? <Eye className="absolute h-4 w-4 md:h-6 md:w-6 right-3 top-2.5 text-gray-400" /> : <EyeOff className="absolute h-4 w-4 md:h-6 md:w-6 right-3 top-2.5 text-gray-500" />} </p>
                         {errors.password && <p className="text-red-500">{errors.password}</p>}
                     </div>
 
                 </div>
                 <div className="flex flex-col gap-2 w-[90%]">
-                    <p className="font-semibold text-md text-gray-700" >Confirm Password</p>
+                    <p className="font-semibold text-sm md:text-md text-gray-700" >Confirm Password</p>
                     <div className="relative">
                         <input
                             onChange={handleChange}
@@ -145,26 +145,26 @@ const SignUp = () => {
                             placeholder="Confirm your password"
                             name="confirmPassword"
                             value={formData.confirmPassword}
-                            className="border-1 border-gray-500 w-full py-2 pl-9 rounded-xl focus:outline-none focus:border-purple-500 focus:border-2" />
-                        <LockKeyhole className="absolute top-3 left-3 w-4 h-4 text-gray-500" />
-                        <p onClick={handleConfirmPassword}>{showConfirmPassword ? <Eye className="absolute right-3 top-2.5 text-gray-400" /> : <EyeOff className="absolute right-3 top-2.5 text-gray-500" />}</p>
+                            className="border-1 border-gray-500 text-xs md:text-lg w-full py-2 pl-8 rounded-xl focus:outline-none focus:border-purple-500 focus:border-2" />
+                        <LockKeyhole className="absolute top-2.5 left-3  md:top-3.5 md:left-3 w-3.5 h-3.5 md:w-4 md:h-4 text-gray-500" />
+                        <p onClick={handleConfirmPassword}>{showConfirmPassword ? <Eye className="absolute h-4 w-4 md:h-6 md:w-6 right-3 top-2.5 text-gray-400" /> : <EyeOff className="absolute h-4 w-4 md:h-6 md:w-6 right-3 top-2.5 text-gray-500" />}</p>
                         {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword}</p>}
                     </div>
 
                 </div>
-                <div className="flex gap-2 rounded-xl justify-left items-center  py-4">
-                    <input type="checkbox" name="" id="" className="h-5 w-5" />
-                    <p>I agree to the Terms of Service & Privacy Policy</p>
+                <div className="flex gap-2 rounded-xl justify-left items-center  mx-3 py-4">
+                    <input type="checkbox" name="" id="" className="h-3 w-3 md:h-5 md:w-5" />
+                    <p className="text-xs md:text-xl">I agree to the Terms of Service & Privacy Policy</p>
                 </div>
                 {error && <p className="text-red-500">{error}</p>}
                 {success && <p className="text-green-600">{success}</p>}
 
-                <button className="w-[90%] bg-purple-500 py-4 text-white border-1 p-5 border-purple-600 rounded-xl cursor-pointer hover:bg-purple-600 relative"> <CircleUser className="absolute w-7 h-7 left-5 " /><p className="flex justify-center font-semibold gap-3 ">Create Account</p></button>
+                <button className="w-[70%] md:w-[90%] bg-purple-500 text:xs py-2 md:py-4 md:text-lg text-white border-1 p-5 border-purple-600 rounded-xl cursor-pointer hover:bg-purple-600 relative"><p className="flex justify-center font-semibold gap-3 ">Create Account</p></button>
                 <div className="border-gray-100 w-[90%] mt-4 border-[0.5px]"></div>
-                <p className="text-gray-700 font-semibold">Already have an Account?
+                <p className="text-gray-700 text-xs md:text-lg font-semibold">Already have an Account?
                     <Link to="/Signin" className="text-purple-500 cursor-pointer"> SignIn here</Link>
                 </p>
-                <Link to="/Home" className=" text-gray-800 font-semibold flex justify-center hover:bg-gray-200 py-4 w-[90%] cursor-pointer rounded-xl">Back to Home</Link>
+                <Link to="/Home" className=" text-gray-800 text-sm md:text-xl font-semibold flex justify-center hover:bg-gray-200 py-4 w-[90%] cursor-pointer rounded-xl">Back to Home</Link>
             </form>
 
         </div>
