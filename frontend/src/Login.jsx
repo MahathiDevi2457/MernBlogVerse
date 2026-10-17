@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './context/AuthContext';
 import React, { useState } from 'react'
 import NavBar from './NavBar'
 import { Link } from 'react-router-dom'
@@ -9,6 +11,9 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -17,21 +22,40 @@ const Login = () => {
     setSuccess('');
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    let newErrors = {};
-    if (!formData.email) newErrors.email = 'Please enter your email';
-    if (!formData.password) newErrors.password = 'Please enter your password';
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
+  let newErrors = {};
 
-    // Placeholder success behaviour - replace with real auth call
-    setSuccess('Signed in successfully');
-  };
+  if (!formData.email.trim()) {
+    newErrors.email = 'Please enter your email';
+  }
 
+  if (!formData.password) {
+    newErrors.password = 'Please enter your password';
+  }
+
+  if (Object.keys(newErrors).length > 0) {
+    setErrors(newErrors);
+    return;
+  }
+
+  setError('');
+  setSuccess('');
+  setLoading(true);
+
+  try {
+    await login(formData.email, formData.password);
+
+    setSuccess('Signed in successfully! Redirecting...');
+
+    navigate('/', { replace: true });
+  } catch (err) {
+    setError(err.message || 'Login failed. Please try again.');
+  } finally {
+    setLoading(false);
+  }
+};
   const toggleShowPassword = () => setShowPassword((p) => !p);
 
   return (
@@ -86,8 +110,13 @@ const Login = () => {
           </div>
           {error && <p className='text-red-500 mt-3'>{error}</p>}
           {success && <p className='text-green-500 mt-3'>{success}</p>}
-          <button className='w-full mt-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 duration-200'>Sign In</button>
-          <div className='w-full flex justify-center my-4 border-1 border-gray-200 '></div>
+          <button
+  type="submit"
+  disabled={loading}
+  className="w-full mt-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 duration-200 disabled:opacity-50"
+>
+  {loading ? 'Signing in...' : 'Sign In'}
+</button>
 
           <p className='text-sm text-center text-gray-700'>Don't have an account?<Link to="/signup" className='text-blue-600 font-semibold hover:cursor-pointer'>Create one here</Link></p>
         </form>
